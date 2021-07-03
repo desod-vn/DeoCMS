@@ -11,8 +11,8 @@
 
         public function index()
         {
-            self::$user->getAll();
-            
+            print_r(self::$user->getAll("DESC"));
+            self::$user->hasMany(['department' => 1], 2);
             $title = "Home";
 
             return $this->view('home', [
@@ -22,22 +22,28 @@
 
         public function one($id)
         {
-            echo $id;
+            print_r(self::$user->getOne($id));
         }
 
         public function create()
         {
-            echo __METHOD__;
+            $data = [
+                'name' => 'Bán hàng',
+            ];
+            self::$user->createOne($data);
         }
 
         public function update($id)
         {
-            echo __METHOD__;
+            $data = [
+                'name' => 'Bán hàng chơi 2s',
+            ];
+            self::$user->updateOne($id, $data);
         }
 
         public function delete($id)
         {
-            echo __METHOD__;
+            self::$user->deleteOne($id);
         }
 
     }
