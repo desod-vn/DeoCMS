@@ -11,39 +11,79 @@
 
         public function index()
         {
-            print_r(self::$user->getAll("DESC"));
-            self::$user->hasMany(['department' => 1], 2);
-            $title = "Home";
-
-            return $this->view('home', [
-                'title' => $title,
-            ]);
+            return $this->view('home', []);
         }
 
         public function one($id)
         {
-            print_r(self::$user->getOne($id));
+            $data = self::$user->getOne($id);
+
+            return $this->view('home', [
+                'masage' => $data,
+            ]);
         }
 
         public function create()
         {
-            $data = [
-                'name' => 'Bán hàng',
-            ];
-            self::$user->createOne($data);
+            $mesage = "";
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                $data = [
+                    'name' => 'Bán hàng',
+                ];
+
+                if(self::$user->createOne($data))
+                    $mesage = "Thành công";
+                else
+                    $mesage = "Thất bại";
+            }
+
+            return $this->view('home', [
+                'masage' => $mesage,
+            ]);
         }
 
         public function update($id)
         {
-            $data = [
-                'name' => 'Bán hàng chơi 2s',
-            ];
-            self::$user->updateOne($id, $data);
+            $mesage = "";
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                $data = [
+                    'name' => 'Bán hàng',
+                ];
+
+                if(self::$user->createOne($data))
+                    $mesage = "Thành công";
+                else
+                    $mesage = "Thất bại";
+            }
+
+            return $this->view('home', [
+                'masage' => $mesage,
+            ]);
         }
 
         public function delete($id)
         {
-            self::$user->deleteOne($id);
+            $mesage = "";
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                $data = [
+                    'name' => 'Bán hàng',
+                ];
+
+                if(self::$user->createOne($data))
+                    $mesage = "Thành công";
+                else
+                    $mesage = "Thất bại";
+            }
+
+            return $this->view('home', [
+                'masage' => $mesage,
+            ]);
         }
 
     }

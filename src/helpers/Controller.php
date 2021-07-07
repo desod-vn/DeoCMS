@@ -11,7 +11,7 @@
                 $$key = $value;
             }
 
-            $view = self::VIEW_FOLDER_NAME . "/" . str_replace(".", "/", $path) . ".php";
+            $view = self::VIEW_FOLDER_NAME . "/" . str_replace(".", "/", $path) . ".deo.php";
 
             return require $view;
         }
